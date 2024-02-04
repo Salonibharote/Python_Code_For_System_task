@@ -4,7 +4,9 @@ import socket  #importing library for networking operations
 import subprocess #importing library for running shell commands
 import psutil #importing library for system monitoring
 import speedtest #importing library for measuring internet speed
-import getmac #importing libarary for getting MAc address of Wifi     
+import getmac #importing libarary for getting MAc address of Wifi 
+import GPUtil
+
 def All_installed_software():
     installed_software = subprocess.check_output(['wmic', 'product', 'get', 'name']).decode('utf-8') # Using 'wmic' command to fetch a list of installed software in the system
     return installed_software 
@@ -26,7 +28,6 @@ def cpu_model_info():
     return cpu_info
 def gpu_Model_info():
     try:
-        import GPUtil
         gpu_info = GPUtil.getGPUs()
         if gpu_info:
             return f"GPU Model: {gpu_info[0].name}"
